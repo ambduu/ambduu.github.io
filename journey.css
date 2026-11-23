@@ -90,7 +90,7 @@ a:focus-visible, button:focus-visible, textarea:focus-visible, select:focus-visi
 .loader-pint .foam { position: absolute; left: 0; right: 0; top: 18%; height: 16px; background: #fff6e2; border-radius: 8px; opacity: .0; }
 .loader-pct { font: 800 14px Archivo, sans-serif; letter-spacing: .12em; color: #fff; }
 
-@media (prefers-reduced-motion: reduce) { .jscene { height: auto !important; } .jstage { position: relative; } }
+/* (reduce-motion no longer flattens the scenes: the scroll story is visitor-driven and runs for everyone) */
 
 
 /* ===== v2: design box + photoreal sprites + cursor light ===== */
@@ -163,3 +163,34 @@ a:focus-visible, button:focus-visible, textarea:focus-visible, select:focus-visi
 .jh .pill.w { display: inline-block !important; }
 @media (max-width: 480px) { .jh .pill { padding: 9px 11px; font-size: 10.5px; letter-spacing: .06em; } .jh-cta { gap: 6px; } }
 @media (max-width: 360px) { .jh .pill.w { display: none !important; } }
+
+/* ---------- animated logo: dark "code", "brew" pours full of beer, grows a foam head that overflows the w and drips ---------- */
+.jh-logo { display: inline-flex; line-height: 0; --lg-code: #fff6e2; --lg-beer: #f2c14e; --lg-foam: #fffaf0; --lg-edge: rgba(120,80,30,.25); --lg-empty: rgba(255,255,255,.2); }
+.jh[data-tone="dark"] .jh-logo { --lg-code: #2b1a12; --lg-beer: #e9a03a; --lg-edge: #e2d2ae; --lg-empty: rgba(43,26,18,.13); }
+[data-theme="dark"] .jh .jh-logo { --lg-code: #fff; --lg-beer: #f2c14e; --lg-foam: #f3e6cf; --lg-edge: transparent; --lg-empty: rgba(255,255,255,.16); }
+.jh-logo .lg { height: 1.9em; width: auto; overflow: visible; display: block; }
+.lg-empty { fill: var(--lg-empty); } .lg-code { fill: var(--lg-code); } .lg-beer { fill: var(--lg-beer); }
+.lg-foam { fill: var(--lg-foam); } .lg-edge { stroke: var(--lg-edge); stroke-width: 1.5px; } .lg-b { fill: var(--lg-foam); opacity: .85; }
+.lg-lvl { transform: translateY(120px); animation: lg-fill 1.7s cubic-bezier(.45,0,.25,1) 1.6s forwards; }
+.lg-wv { animation: lg-wave 1.5s linear infinite; }
+.lg-crown { opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; animation: lg-crown .7s ease-out 3.1s forwards; }
+.lg-br { animation: lg-breathe 2.4s ease-in-out 3.8s infinite; }
+.lg-d { transform-box: fill-box; transform-origin: 50% 0; animation: lg-dr 2.6s ease-in-out infinite; }
+.lg-run { transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); animation: lg-run 7s ease-in 3.4s infinite; }
+.lg-drop { opacity: 0; transform-box: fill-box; animation: lg-drop 7s ease-in 3.4s infinite; }
+.lg-spl { opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; animation: lg-spl 7s ease-out 3.4s infinite; }
+.lg-b { transform-box: fill-box; animation: lg-rise 2.4s linear infinite; }
+.jh-logo.repour .lg-lvl { animation: lg-fill 1.5s cubic-bezier(.45,0,.25,1) forwards; }
+.jh-logo.repour .lg-crown { animation: lg-crown .7s ease-out 1.3s both; }
+@keyframes lg-fill { to { transform: translateY(0); } }
+@keyframes lg-wave { to { transform: translateX(-120px); } }
+@keyframes lg-crown { 0% { opacity: 0; transform: translateY(16px) scaleY(.3); } 70% { opacity: 1; transform: translateY(-3px) scaleY(1.08); } 100% { opacity: 1; transform: none; } }
+@keyframes lg-breathe { 50% { transform: translateY(-2px); } }
+@keyframes lg-dr { 50% { transform: scaleY(1.6); } }
+@keyframes lg-run { 0%, 10% { transform: scaleY(0); } 40%, 85% { transform: scaleY(1); } 100% { transform: scaleY(0); } }
+@keyframes lg-drop { 0%, 42% { transform: translateY(0); opacity: 0; } 45% { opacity: 1; } 60% { transform: translateY(62px); opacity: 1; } 62%, 100% { transform: translateY(62px); opacity: 0; } }
+@keyframes lg-spl { 0%, 59% { transform: scale(0); opacity: 0; } 62% { transform: scale(1); opacity: 1; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
+@keyframes lg-rise { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: .85; } 100% { transform: translateY(-90px); opacity: 0; } }
+/* phones: logo + both pills + the pint must fit on one row */
+@media (max-width: 480px) { .jh { padding-left: 14px !important; padding-right: 14px !important; gap: 8px !important; } .jh-logo .lg { height: 36px; } .jh-cta { gap: 5px !important; } }
+@media (max-width: 380px) { .jh-logo .lg { height: 32px; } }

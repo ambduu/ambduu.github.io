@@ -34,7 +34,21 @@
 
 <!-- fixed header, Alfred-style -->
 <header class="jh" id="jh">
-  <a class="jh-logo" href="#top">code<b>brew</b></a>
+  <a class="jh-logo" href="#top" aria-label="codebrew, back to the top"><svg class="lg" viewBox="10 18 600 200" aria-hidden="true">
+      <defs><clipPath id="lgWord"><text x="300" y="150" text-anchor="middle" font-family="Archivo Black" font-size="110" letter-spacing="-4">codebrew</text></clipPath>
+        <clipPath id="lgHalf"><rect x="296" y="0" width="330" height="220"/></clipPath></defs>
+      <text class="lg-empty" x="300" y="150" text-anchor="middle" font-family="Archivo Black" font-size="110" letter-spacing="-4">codebrew</text>
+      <g clip-path="url(#lgWord)"><rect class="lg-code" x="0" y="40" width="296" height="140"/>
+        <g clip-path="url(#lgHalf)"><g class="lg-lvl"><rect class="lg-beer" x="0" y="66" width="620" height="120"/>
+          <g class="lg-wv"><path class="lg-foam" d="M0 60 Q30 50 60 60 T120 60 T180 60 T240 60 T300 60 T360 60 T420 60 T480 60 T540 60 T600 60 T660 60 T720 60 T780 60 V80 H0Z"/></g>
+          <circle class="lg-b" cx="330" cy="160" r="4"/><circle class="lg-b" cx="410" cy="164" r="3.5" style="animation-delay:-.9s"/><circle class="lg-b" cx="500" cy="160" r="4.5" style="animation-delay:-1.6s"/></g></g></g>
+      <g transform="translate(298 0) scale(.92 1) translate(-268 0)"><g class="lg-crown"><g class="lg-br">
+        <path class="lg-foam lg-edge" d="M270 72 Q272 50 296 54 Q306 36 328 44 Q344 28 366 40 Q386 24 406 38 Q428 24 446 38 Q468 26 488 42 Q510 32 526 48 Q548 40 560 56 Q576 60 574 74 Q566 80 552 76 Q530 78 510 74 Q490 78 470 74 Q450 78 430 74 Q410 78 390 74 Q370 78 350 74 Q330 78 310 74 Q290 78 270 72Z"/>
+        <rect class="lg-foam lg-d" x="318" y="72" width="8" height="15" rx="4"/><rect class="lg-foam lg-d" x="436" y="72" width="8" height="20" rx="4" style="animation-delay:-1.1s"/>
+        <path class="lg-foam lg-edge lg-run" d="M560 70 Q572 72 572 90 L572 132 Q572 142 566 142 Q560 142 560 132 L560 84Z"/></g></g>
+        <ellipse class="lg-foam lg-edge lg-drop" cx="566" cy="148" rx="6" ry="8"/>
+        <path class="lg-foam lg-edge lg-spl" d="M546 212 Q556 198 566 210 Q576 198 586 212Z"/></g>
+    </svg></a>
   <div class="jh-cta"><a class="pill y" href="#tram">Order a round</a><a class="pill w" href="#taproom">Tap list</a></div>
   <div class="cord-spot" id="cordSpot" aria-hidden="true"></div>
 </header>

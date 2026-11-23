@@ -24,7 +24,11 @@
 */
 (function () {
   const K = {};
-  K.reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // The scroll story IS the site and is driven by the visitor's own scrolling, so it runs even with
+  // "Reduce Motion" on (iPhones with that setting used to get a completely still page). K.calm keeps the preference
+  // for anything that moves on its own (cursor fizz, idle loops) to opt out of.
+  K.calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  K.reduced = false;
   K.C = { // palette
     amber: "#e9a03a", amberDeep: "#d98a22", honey: "#f2c14e", cream: "#fff6e2", paper: "#f3ead8",
     ink: "#2b1a12", charcoal: "#58585b", charcoalDeep: "#4b4b4e", copper: "#c97a3a", copperDark: "#8a4418",

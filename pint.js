@@ -55,3 +55,5 @@
   }
   document.addEventListener("DOMContentLoaded", pint);
 })();
+// the logo re-pours whenever the beer changes (lager <-> stout)
+document.addEventListener("brew:theme", () => { const l = document.querySelector(".jh-logo"); if (!l) return; l.classList.remove("repour"); void l.offsetWidth; l.classList.add("repour"); });
