@@ -65,7 +65,7 @@ SCENES.push({
       .h-tk-foot { display: block; margin-top: 6px; font: 600 11px Archivo, sans-serif; opacity: .6; }
       @media (max-width: 800px) {
         .h-copy { left: 6vw; top: 80px; width: 88vw; } .h-kick { margin-bottom: 10px; font-size: 11px; } .h-title { font-size: 42px; } .h-txt { margin: 10px 0 14px; font-size: 14.5px; } .h-cta { padding: 12px 18px; font-size: 14px; }
-        #h-barril { scale: .6; translate: 0 62px; } .h-crate, #h-barley1, #h-barley2 { translate: 0 84px; } .h-arrow { display: none; }
+        #h-barril { scale: .6; translate: 0 84px; } .h-crate, #h-barley1, #h-barley2 { translate: 0 84px; } .h-arrow { display: none; }
         #h-ticketwrap { left: 760px !important; top: 612px !important; }
         .h-bar { gap: 16px; padding: 0 5vw; overflow-x: auto; } .h-bar-social { display: none; }
       }
