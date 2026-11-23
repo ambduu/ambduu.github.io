@@ -3,6 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* ?debug=1 shows JS errors on screen (for testing on phones); ?y=N scrolls there once the page is ready */
+(function(){var q=location.search;if(!/[?&]debug=1/.test(q))return;var L=[];function show(){var b=document.getElementById("cb-dbg");if(!b){b=document.createElement("pre");b.id="cb-dbg";b.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:99999;margin:0;max-height:45vh;overflow:auto;background:rgba(160,0,0,.92);color:#fff;font:11px/1.35 monospace;padding:8px;white-space:pre-wrap";(document.body||document.documentElement).appendChild(b)}b.textContent=L.join("\n")}
+window.addEventListener("error",function(e){L.push("ERR "+(e.message||e.target&&(e.target.src||e.target.href)||"?")+" @"+(e.filename||"").split("/").pop()+":"+(e.lineno||""));show()},true);
+window.addEventListener("unhandledrejection",function(e){L.push("REJ "+(e.reason&&(e.reason.stack||e.reason.message)||e.reason));show()});
+addEventListener("load",function(){setTimeout(function(){L.push("OK loaded · "+innerWidth+"x"+innerHeight+" · reduce="+matchMedia("(prefers-reduced-motion: reduce)").matches+" · gsap="+(window.gsap&&gsap.version)+" · ST="+!!window.ScrollTrigger+" · y="+scrollY+" · "+navigator.userAgent.replace(/^.*?\(/,"("));show();var m=q.match(/[?&]y=(\d+)/);if(m)window.scrollTo(0,+m[1])},3500)})})();</script>
+
 <title>codebrew · Germanjit Singh Sandhu · Senior Shopify &amp; Shopify Plus Developer, Portugal</title>
 <meta name="description" content="Germanjit Singh Sandhu, senior Shopify &amp; Shopify Plus developer in Portugal: custom OS 2.0 themes, checkout extensions, Shopify Functions, B2B, apps and back ends. 200+ stores since 2015.">
 <link rel="canonical" href="https://ambduu.github.io/">
@@ -16,10 +22,10 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Germanjit Singh Sandhu","jobTitle":"Senior Shopify & Shopify Plus Developer","url":"https://ambduu.github.io/","email":"mailto:ambduu@gmail.com","address":{"@type":"PostalAddress","addressCountry":"PT"},"sameAs":["https://www.linkedin.com/in/germanjit-singh-sandhu","https://github.com/ambduu"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&family=Rye&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="journey.css?v=1795445343">
-<link rel="stylesheet" href="nightlights.css?v=1795445343">
-<link rel="stylesheet" href="pint.css?v=1795445343">
-<link rel="stylesheet" href="signs2.css?v=1795445343">
+<link rel="stylesheet" href="journey.css?v=1795447314">
+<link rel="stylesheet" href="nightlights.css?v=1795447314">
+<link rel="stylesheet" href="pint.css?v=1795447314">
+<link rel="stylesheet" href="signs2.css?v=1795447314">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -59,29 +65,29 @@
 <!-- progress keg on the right edge -->
 <div class="jprog" aria-hidden="true"><i id="jprogFill"></i></div>
 
-<script src="assets/vendor/gsap.min.js?v=1795445343"></script>
-<script src="assets/vendor/ScrollTrigger.min.js?v=1795445343"></script>
-<script src="assets/vendor/CustomEase.min.js?v=1795445343"></script>
-<script src="assets/vendor/CustomWiggle.min.js?v=1795445343"></script>
-<script src="assets/vendor/Physics2DPlugin.min.js?v=1795445343"></script>
-<script src="assets/vendor/SplitText.min.js?v=1795445343"></script>
-<script src="kit.js?v=1795445343"></script>
+<script src="assets/vendor/gsap.min.js?v=1795447314"></script>
+<script src="assets/vendor/ScrollTrigger.min.js?v=1795447314"></script>
+<script src="assets/vendor/CustomEase.min.js?v=1795447314"></script>
+<script src="assets/vendor/CustomWiggle.min.js?v=1795447314"></script>
+<script src="assets/vendor/Physics2DPlugin.min.js?v=1795447314"></script>
+<script src="assets/vendor/SplitText.min.js?v=1795447314"></script>
+<script src="kit.js?v=1795447314"></script>
 <!-- scenes (each pushes into window.SCENES) -->
-<script src="scenes/10-hero.js?v=1795445343"></script>
-<script src="scenes/20-mill.js?v=1795445343"></script>
-<script src="scenes/30-boil.js?v=1795445343"></script>
-<script src="scenes/40-chill.js?v=1795445343"></script>
-<script src="scenes/50-ferment.js?v=1795445343"></script>
-<script src="work.js?v=1795445343"></script>
-<script src="scenes/60-bottling.js?v=1795445343"></script>
-<script src="scenes/65-taproom.js?v=1795445343"></script>
-<script src="scenes/70-tram.js?v=1795445343"></script>
-<script src="scenes/80-bar.js?v=1795445343"></script>
-<script src="journey.js?v=1795445343"></script>
-<script src="signs2.js?v=1795445343"></script>
-<script src="pint.js?v=1795445343"></script>
-<script src="rope.js?v=1795445343"></script>
-<script src="nightlights.js?v=1795445343"></script>
-<script src="fx.js?v=1795445343"></script>
+<script src="scenes/10-hero.js?v=1795447314"></script>
+<script src="scenes/20-mill.js?v=1795447314"></script>
+<script src="scenes/30-boil.js?v=1795447314"></script>
+<script src="scenes/40-chill.js?v=1795447314"></script>
+<script src="scenes/50-ferment.js?v=1795447314"></script>
+<script src="work.js?v=1795447314"></script>
+<script src="scenes/60-bottling.js?v=1795447314"></script>
+<script src="scenes/65-taproom.js?v=1795447314"></script>
+<script src="scenes/70-tram.js?v=1795447314"></script>
+<script src="scenes/80-bar.js?v=1795447314"></script>
+<script src="journey.js?v=1795447314"></script>
+<script src="signs2.js?v=1795447314"></script>
+<script src="pint.js?v=1795447314"></script>
+<script src="rope.js?v=1795447314"></script>
+<script src="nightlights.js?v=1795447314"></script>
+<script src="fx.js?v=1795447314"></script>
 </body>
 </html>
