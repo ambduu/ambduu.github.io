@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All stores · codebrew · Germanjit Singh Sandhu</title>
+<meta name="description" content="Real Shopify and Shopify Plus stores Germanjit Singh Sandhu has worked on, still live today. Jewellery, clothing, cosmetics, pet, footwear, bags, furniture and food.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#e9a03a">
+<script>/* theme before first paint: same key + values as the journey (rope.js) */
+(function () { var t = null; try { t = localStorage.getItem("brew-theme"); } catch (e) {}
+  if (t !== "dark" && t !== "light") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  document.documentElement.dataset.theme = t; })();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stores.css">
+</head>
+<body>
+<header class="sh">
+  <a class="sh-logo" href="index.html" aria-label="codebrew, back to the journey">code<b>brew</b></a>
+  <nav class="sh-nav" aria-label="Main">
+    <a href="index.html#taproom">← Back to the journey</a>
+    <a class="sh-cta" href="index.html#tram">Get in touch</a>
+    <button class="sh-theme" type="button" aria-label="Switch light or dark"><span class="sh-t-l">Dark</span><span class="sh-t-d">Light</span></button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <p class="kick">Recent work</p>
+    <h1>Real stores, live today</h1>
+    <p class="lede">Every one of these is a real Shopify store Germanjit has worked on, still live today. Pick a store type, then visit any store to see it for yourself.</p>
+  </div>
+
+  <div class="chips" role="group" aria-label="Filter stores by type" id="chips"></div>
+  <p class="count" id="count" aria-live="polite"></p>
+
+  <ul class="grid" id="grid"></ul>
+
+  <p class="more" id="more"></p>
+  <p class="back"><a href="index.html#tram">Got a store in mind? Order a round →</a></p>
+</main>
+
+<dialog class="lb" id="lb" aria-labelledby="lbName">
+  <figure class="lb-fig">
+    <div class="lb-bar"><i></i><i></i><i></i><span id="lbDom"></span></div>
+    <img id="lbImg" alt="" width="1024" height="640">
+  </figure>
+  <div class="lb-meta">
+    <div><h2 id="lbName"></h2><p id="lbInd"></p><p id="lbNote" class="lb-note"></p></div>
+    <div class="lb-act"><a class="btn" id="lbGo" target="_blank" rel="noopener">Visit store →</a><button class="lb-x" type="button" id="lbX">Close</button></div>
+  </div>
+</dialog>
+
+<noscript><p class="wrap">This list needs JavaScript. You can still browse the stores on the <a href="themes.html">themes page</a>.</p></noscript>
+<script src="work.js"></script>
+<script src="stores.js"></script>
+</body>
+</html>

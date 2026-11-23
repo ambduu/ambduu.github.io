@@ -1,0 +1,95 @@
+/* PROTOTYPE · realistic bar signs (pairs with signs2.js). Replaces the .sign block in journey.css. */
+/* z 45: under the fixed header (z 50), so a sign dropping in or lifting away slides behind the nav, never over it */
+.sign2 { position: fixed; z-index: 45; transition: opacity .45s ease; cursor: pointer; font-family: Archivo, sans-serif; --lit: 1; --sox: 14px; --soy: 22px; --sblur: 14px; --sop: .38; --hx: 30%; --hy: 20%; }
+.sign2 b { display: block; font-family: "Rye", Georgia, serif; font-weight: 400; letter-spacing: .02em; line-height: 1.05; }
+.sign2 span { display: block; margin-top: 6px; font-size: 13px; line-height: 1.35; }
+.sg-board { position: relative; filter: brightness(var(--lit)) saturate(calc(.55 + var(--lit) * .45)); will-change: transform; }
+.sg-face { position: relative; z-index: 1; }
+/* the cast shadow lives on the wall, not on the sign: offset in screen space by the light, softened by distance */
+.sg-shadow { position: absolute; left: 0; pointer-events: none; background: rgb(18,8,0); opacity: var(--sop); border-radius: 8px;
+  filter: blur(var(--sblur)); translate: var(--sox) var(--soy); will-change: transform; }
+/* specular hot-spot that tracks the light (lantern in stout mode, top-left-ish in lager mode) */
+.sg-spec { position: absolute; inset: 0; z-index: 2; border-radius: inherit; pointer-events: none; mix-blend-mode: soft-light;
+  background: radial-gradient(circle 140px at var(--hx) var(--hy), rgba(255,240,210,.75), rgba(255,240,210,0) 70%); }
+[data-theme="dark"] .sg-spec { mix-blend-mode: screen; background: radial-gradient(circle 120px at var(--hx) var(--hy), rgba(255,190,110,.35), rgba(255,190,110,0) 70%); }
+
+/* ---- 1. plank on two real chains ---- */
+.sign2--plank { top: 64px; width: 280px; margin-left: -140px; }
+.sg-chain { position: absolute; top: -64px; width: 10px; height: 140px; transform-origin: 50% 0; z-index: 1;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='18'%3E%3Cdefs%3E%3ClinearGradient id='s' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23312c27'/%3E%3Cstop offset='.45' stop-color='%23d8d1c4'/%3E%3Cstop offset='1' stop-color='%23443e36'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='1.6' y='.8' width='6.8' height='11' rx='3.4' fill='none' stroke='url(%23s)' stroke-width='2'/%3E%3Crect x='3.9' y='8.2' width='2.2' height='10.5' rx='1.1' fill='url(%23s)'/%3E%3C/svg%3E") 0 0 / 10px 18px repeat-y;
+  filter: drop-shadow(calc(var(--sox) * .5) calc(var(--soy) * .5) 2px rgba(0,0,0,calc(var(--sop) * .9))) brightness(var(--lit)); }
+.sg-chain.l { left: 26px; } .sg-chain.r { right: 26px; }
+.sign2--plank .sg-board, .sign2--plank .sg-shadow { position: absolute; top: 72px; left: 0; width: 280px; }
+.sign2--plank .sg-board { padding: 16px 26px 17px; text-align: center; color: #26130a; border-radius: 7px 10px 8px 6px / 8px 6px 9px 7px;
+  background:
+    radial-gradient(ellipse 34px 11px at 74% 62%, rgba(60,28,8,.75) 0 3px, rgba(110,60,25,.35) 4px 7px, transparent 8px, rgba(90,45,15,.28) 9px 11px, transparent 13px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='150'%3E%3Cfilter id='g' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.003 .09' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .09 0 0 0 0 .02 0 -1.7 0 0 .95'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E") 0 0 / 100% 100%,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.002 .8' numOctaves='2' seed='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .86 0 0 0 0 .62 0 0 -3 0 1.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E") 0 0 / 100% 100%,
+    linear-gradient(180deg, #d29a5f, #bb8048 45%, #a86d3c);
+  box-shadow: inset 0 2px 0 rgba(255,225,180,.45), inset 0 -4px 0 rgba(45,20,5,.45), inset 4px 0 0 rgba(255,215,170,.12), inset -5px 0 0 rgba(45,20,5,.25), 0 1px 0 rgba(0,0,0,.4); }
+/* routed + scorched lettering: dark cut, light lower lip */
+.sign2--plank b { font-size: 22px; color: #2a1206; text-shadow: 0 1px 0 rgba(255,222,175,.55), 0 -1px 0 rgba(20,8,0,.5); }
+.sign2--plank span { color: #2f1708; font-weight: 700; text-shadow: 0 1px 0 rgba(255,222,175,.35); }
+.sign2--plank .eye { position: absolute; top: 4px; width: 11px; height: 11px; border-radius: 50%; z-index: 2;
+  background: radial-gradient(circle at 50% 50%, transparent 2.5px, #3b352d 3px, #cfc7b8 4px, #5a5247 5.5px); }
+.sign2--plank .eye.l { left: 21px; } .sign2--plank .eye.r { right: 21px; }
+
+/* ---- 2. enamel tin on a nail + wire ---- */
+.sign2--tin { right: 34px; width: 250px; }
+.sg-nail { position: absolute; left: 50%; top: -6px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%; z-index: 3;
+  background: radial-gradient(circle at 35% 30%, #f2ede4, #8c857a 55%, #3c372f); box-shadow: 2px 3px 3px rgba(0,0,0,.4); }
+.sign2--tin .sg-swing { position: relative; transform-origin: 50% -2px; padding-top: 36px; }
+.sg-wire { position: absolute; left: 0; top: -2px; width: 100%; height: 50px; overflow: visible; pointer-events: none; }
+.sg-wire path { fill: none; stroke: #3b3630; stroke-width: 1.4; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.sign2--tin .sg-shadow { border-radius: 12px; width: 250px; }
+.sign2--tin .sg-board { padding: 17px 22px 18px; color: #8f1d12; border-radius: 12px; overflow: hidden;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 130' preserveAspectRatio='none'%3E%3Cfilter id='j'%3E%3CfeTurbulence baseFrequency='.3' numOctaves='2' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='6'/%3E%3C/filter%3E%3Cg filter='url(%23j)' stroke='%23944b1a' stroke-width='2.5' fill='%23302a25'%3E%3Cpath d='M-2 22 Q9 18 12 27 Q9 36 -2 38Z'/%3E%3Cpath d='M214 -2 Q222 10 236 6 L240 -2Z'/%3E%3Cpath d='M140 132 Q146 120 158 124 Q162 130 160 132Z'/%3E%3Cpath d='M252 88 Q243 92 244 102 Q248 108 252 106Z'/%3E%3Ccircle cx='62' cy='120' r='2.5'/%3E%3Ccircle cx='196' cy='16' r='1.8'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100%,
+    linear-gradient(rgba(140,64,18,.55), rgba(140,64,18,0)) 11px 24px / 3px 34px no-repeat,
+    linear-gradient(rgba(140,64,18,.45), rgba(140,64,18,0)) calc(100% - 11px) 24px / 3px 46px no-repeat,
+    linear-gradient(rgba(140,64,18,.4), rgba(140,64,18,0)) calc(100% - 13px) calc(100% - 4px) / 2px 10px no-repeat,
+    linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.35) 42%, rgba(255,255,255,0) 52%),
+    linear-gradient(160deg, #f8eed6, #eadab4);
+  box-shadow: inset 0 0 0 4px #a8281a, inset 0 0 0 6px #f6ead0, inset 0 0 0 7.5px rgba(168,40,26,.8), inset 2px 3px 0 8px rgba(255,255,255,.0),
+    inset 0 0 22px rgba(120,70,20,.25), inset 3px 3px 2px 4px rgba(255,255,255,.2); }
+.sign2--tin b { font-size: 22px; text-align: center; text-shadow: 0 1px 0 rgba(255,255,255,.6); }
+.sign2--tin span { color: #3f2210; text-align: center; font-weight: 600; }
+.sign2--tin .screw { position: absolute; width: 8px; height: 8px; border-radius: 50%; z-index: 2;
+  background: linear-gradient(45deg, transparent 44%, rgba(40,30,20,.75) 44% 56%, transparent 56%), radial-gradient(circle at 35% 35%, #fff, #9a9286 55%, #4a453d); }
+.sign2--tin .tl { top: 6px; left: 8px; } .sign2--tin .tr { top: 6px; right: 8px; } .sign2--tin .bl { bottom: 6px; left: 8px; } .sign2--tin .br { bottom: 6px; right: 8px; }
+.sign2--azulejo .sg-board { color: #1d4a95;
+  background:
+    radial-gradient(circle at 0 0, #1f4e9c 0 12px, transparent 13px), radial-gradient(circle at 100% 0, #1f4e9c 0 12px, transparent 13px),
+    radial-gradient(circle at 0 100%, #1f4e9c 0 12px, transparent 13px), radial-gradient(circle at 100% 100%, #1f4e9c 0 12px, transparent 13px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 130' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%232a3f63' stroke-opacity='.16' stroke-width='.7'%3E%3Cpath d='M0 40 L38 52 L61 31 L104 46 L130 20 L171 38 L250 26'/%3E%3Cpath d='M20 130 L44 96 L90 104 L118 74 L165 90 L200 70 L250 84'/%3E%3Cpath d='M61 31 L70 70 L44 96'/%3E%3Cpath d='M171 38 L176 66 L200 70'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100%,
+    linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.55) 42%, rgba(255,255,255,0) 52%),
+    linear-gradient(160deg, #fdfcf8, #e9eef6);
+  box-shadow: inset 0 0 0 4px #1f4e9c, inset 0 0 0 7px #fdfcf8, inset 0 0 0 8.5px rgba(31,78,156,.8), inset 0 0 18px rgba(31,78,156,.12); }
+.sign2--azulejo span { color: #213f70; }
+
+/* ---- 3. chalkboard A-board standing on the floor ---- */
+.sign2--chalk { right: 88px; bottom: 0; width: 262px; }
+.sign2--chalk .sg-swing { transform-origin: 30% 100%; }
+.sign2--chalk .sg-shadow { bottom: 0; top: auto !important; transform-origin: 30% 100%; }
+.sign2--chalk .sg-board { padding: 18px 22px 22px; color: #f4f1ea; margin-bottom: 30px;
+  background:
+    radial-gradient(ellipse 90px 26px at 70% 78%, rgba(255,255,255,.07), transparent 70%),
+    radial-gradient(ellipse 120px 30px at 30% 30%, rgba(255,255,255,.05), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 -1.2 .62'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(120% 90% at 30% 20%, #3a4137, #20251d 70%);
+  border: 11px solid transparent; border-image: linear-gradient(135deg, #a46b37, #5e3517 50%, #8a5529) 1;
+  box-shadow: inset 0 0 26px rgba(0,0,0,.55); }
+.sign2--chalk .sg-ledge { position: absolute; left: -11px; right: -11px; bottom: -22px; height: 11px; background: linear-gradient(#7a4a22, #4d2b12); }
+.sign2--chalk .sg-ledge::after { content: ""; position: absolute; left: 30px; top: -5px; width: 26px; height: 6px; border-radius: 3px; background: #f3efe6; box-shadow: 46px 1px 0 -1px #f6d36a; }
+.sign2--chalk .sg-face { filter: url(#sg-chalk); }
+.sign2--chalk b { font-family: "Caveat", "Rye", cursive; font-weight: 700; font-size: 32px; }
+.sign2--chalk span { font-family: "Caveat", cursive; font-size: 21px; line-height: 1.15; opacity: .9; }
+.sign2--chalk .sg-swing::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: -2px; height: 32px; pointer-events: none;   /* A-frame legs */
+  background: linear-gradient(100deg, transparent 0 8%, #6b3f1c 8% 12%, transparent 12%), linear-gradient(80deg, transparent 0 88%, #6b3f1c 88% 92%, transparent 92%); }
+
+@media (max-width: 700px) {
+  .sign2--plank { width: 220px; margin-left: -110px; } .sign2--plank .sg-board, .sign2--plank .sg-shadow { width: 220px; padding: 12px 16px 13px; }
+  .sign2--plank b, .sign2--tin b { font-size: 17px; } .sign2--tin { width: 210px; top: auto !important; bottom: 90px; }
+  .sign2--chalk { right: 70px; width: 220px; } .sign2--chalk b { font-size: 25px; } .sign2--chalk span { font-size: 17px; }
+}
+body.diving .sign2 { opacity: 0; transition: opacity .3s; pointer-events: none; }

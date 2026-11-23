@@ -1,0 +1,36 @@
+/* PROTOTYPE · After-hours stout mode (pairs with nightlights.js) */
+/* the dark itself: warmer, deeper, scene-tinted instead of one navy veil; holes come from the JS mask */
+.night { background: var(--nightTint, rgba(10,6,14,.86)) !important; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in; mask-composite: intersect; transition: opacity .6s; }
+#boil  { --nightTint: rgba(8,10,24,.84); }  #tram { --nightTint: rgba(10,10,30,.80); }
+#bar   { --nightTint: rgba(12,6,16,.80); }  #bottling { --nightTint: rgba(4,14,14,.86); }
+.night-bloom { position: absolute; inset: 0; z-index: 4; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity .6s; }
+[data-theme="dark"] .night-bloom { opacity: 1; }
+.ah-box { z-index: 5; pointer-events: none; opacity: 0; transition: opacity .9s .25s; }
+[data-theme="dark"] .ah-box { opacity: 1; }
+.ah-box > * { position: absolute; white-space: nowrap; }
+/* glow-in-the-dark chalk (phosphor): soft green, readable on the dark (contrast ~12:1 vs #0a060e) */
+.ah-phos { font: 700 30px/1.05 Caveat, cursive; color: #c8ffe0; letter-spacing: .01em;
+  text-shadow: 0 0 6px rgba(140,255,190,.8), 0 0 22px rgba(90,255,160,.45); animation: ahPhos 5s ease-in-out infinite alternate; }
+@keyframes ahPhos { from { opacity: .82; } to { opacity: 1; } }
+/* bent neon tube: hot white core, coloured glow, a tiny warm-up flicker when the lights go out */
+.ah-neon { font: 400 58px/1 Rye, Georgia, serif; color: #fff2f7; padding: 4px 14px; border-radius: 14px;
+  text-shadow: 0 0 2px #fff, 0 0 8px #ff5aa0, 0 0 18px #ff2f87, 0 0 42px #ff2f87, 0 0 80px rgba(255,47,135,.6);
+  box-shadow: 0 0 0 2px rgba(255,90,160,.35), 0 0 24px rgba(255,47,135,.35), inset 0 0 18px rgba(255,47,135,.25); }
+#mill .ah-neon, #chill .ah-neon { color: #effff6; text-shadow: 0 0 2px #fff, 0 0 8px #6dffb0, 0 0 18px #2fff8a, 0 0 42px #2fff8a, 0 0 80px rgba(47,255,138,.55);
+  box-shadow: 0 0 0 2px rgba(90,255,160,.35), 0 0 24px rgba(47,255,138,.35), inset 0 0 18px rgba(47,255,138,.2); }
+[data-theme="dark"] .ah-neon { animation: ahBoot 1.4s steps(1) .3s both, ahHum 3.7s ease-in-out 2s infinite; }
+@keyframes ahBoot { 0% { opacity: 0 } 12% { opacity: 1 } 18% { opacity: .1 } 30% { opacity: 1 } 36% { opacity: .3 } 44%, 100% { opacity: 1 } }
+@keyframes ahHum { 0%, 100% { filter: brightness(1) } 47% { filter: brightness(1) } 48% { filter: brightness(.7) } 50% { filter: brightness(1.05) } }
+/* scene lamps really switch on in the dark */
+[data-theme="dark"] .tr-lamp::after { background: #ffe3a0 !important; box-shadow: 0 0 22px 10px rgba(255,200,110,.6) !important; }
+[data-theme="dark"] .tr-win.ah-on b { background: linear-gradient(#ffd27a, #f3a94a); box-shadow: 0 0 18px 4px rgba(255,190,90,.45); }
+/* the header must stay readable whatever tone the scene asked for (fixes invisible "brew" in mill/boil/tram) */
+[data-theme="dark"] .jh .jh-logo { color: #ffe39a; } [data-theme="dark"] .jh .jh-logo b { color: #fff; }
+@media (prefers-reduced-motion: reduce) { .ah-phos, [data-theme="dark"] .ah-neon { animation: none; } }
+[data-theme="dark"] .tr-post .tr-post-l { box-shadow: 0 0 60px 26px rgba(255,205,120,.4); }
+
+
+/* phones: static neon (no endless filter/opacity animation), and no hero notes on short landscape screens */
+@media (pointer: coarse) { [data-theme="dark"] .ah-neon { animation: ahBoot 1.4s steps(1) .3s both; } .ah-phos { animation: none !important; } }
+@media (max-height: 660px), (max-width: 1100px) and (min-aspect-ratio: 1/1) { #top .ah-neon, #top .ah-phos { display: none !important; } }

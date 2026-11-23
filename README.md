@@ -1,7 +1,8 @@
-# Germanjit Singh Sandhu — Portfolio
+# codebrew · Germanjit Singh Sandhu
 
-Senior Backend & Shopify Integrations Engineer · Java / Spring Boot · Node.js · Apache Kafka.
+Shopify & Shopify Plus developer · 200+ stores since 2015.
 
 Live: https://ambduu.github.io
 
-Single-page portfolio with original WebGL scenes (Three.js) and smooth scrolling (Lenis). Both libraries are bundled in `vendor/` under their MIT licences.
+A papercraft brewery you scroll through: grain → mill → boil → ferment → bottling line (real stores) → tap list → order form → bar.
+Plain HTML/CSS/JS with GSAP (ScrollTrigger, Physics2D, SplitText) bundled in `assets/vendor/`.
