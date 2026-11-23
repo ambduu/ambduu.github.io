@@ -1,7 +1,7 @@
 /* fx.js · GSAP micro-interactions
    1. Beer-foam cursor: a soft foam ring trails the pointer (gsap.quickTo) and swells over anything clickable;
-      tiny bubbles fizz up from the pointer as it moves.
-   2. Buttons: magnetic pull toward the pointer, elastic settle on leave, a squish + foam burst on press.
+      a paper hop cone trails the pointer, leaning into the motion; a press sends out a golden ripple.
+   2. Buttons: magnetic pull toward the pointer, elastic settle on leave, a squish + ripple on press.
    Fine pointers only for the ring/trail/magnet; taps still get the burst. Off for reduced motion. */
 (function () {
   if (!window.gsap || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -12,41 +12,23 @@
   const css = document.createElement("style");
   css.textContent = `
     .fx-layer { position: fixed; inset: 0; z-index: 95; pointer-events: none; overflow: hidden; }
-    .fx-b { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; opacity: 0;
-      background: radial-gradient(circle at 34% 30%, rgba(255,255,255,.98) 0 16%, rgba(255,251,236,.45) 38%, rgba(242,193,78,.28) 72%, rgba(242,193,78,.5) 100%);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.75), 0 0 0 1px rgba(120,70,10,.22); will-change: transform, opacity; }
     .fx-ring { position: absolute; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; opacity: 0;
       border: 2px solid rgba(255,248,226,.9); background: radial-gradient(circle, rgba(255,250,235,.18), rgba(242,193,78,.12) 70%, transparent 72%);
       box-shadow: 0 0 0 1px rgba(90,50,10,.25), 0 4px 14px rgba(40,20,0,.18); display: grid; place-items: center; }
     .fx-ring span { font: 800 8px/1 Archivo, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #2b1a12; background: #ffe27a; padding: 3px 5px; border-radius: 2px; opacity: 0; transform: scale(.6); }
+    .fx-hop { position: absolute; left: 0; top: 0; width: 26px; height: 32px; margin: -16px 0 0 -13px; opacity: 0; background: url(img/hop.webp) center / contain no-repeat;
+      transform-origin: 50% 10%; filter: drop-shadow(2px 4px 3px rgba(40,20,0,.3)); }
+    .fx-rip { position: absolute; left: 0; top: 0; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; border: 2px solid #f2c14e; box-shadow: 0 0 0 1px rgba(90,50,10,.2); }
     .fx-mag { transition-property: background-color, color, box-shadow, border-color !important; }`;
   document.head.appendChild(css);
 
   const layer = document.createElement("div"); layer.className = "fx-layer"; layer.setAttribute("aria-hidden", "true");
-  const POOL = 42, pool = Array.from({ length: POOL }, () => { const b = document.createElement("i"); b.className = "fx-b"; layer.appendChild(b); return b; });
-  let pi = 0;
-  const next = () => pool[pi++ % POOL];
-
-  // one bubble fizzing up from (x, y): rises with a little side-to-side wobble, swells, pops
-  function fizz(x, y, big) {
-    const b = next(), s = (big ? .7 : .45) + Math.random() * (big ? .9 : .7), rise = 50 + Math.random() * 90, dur = .9 + Math.random() * .7;
-    gsap.killTweensOf(b);
-    gsap.set(b, { x, y, scale: s * .4, opacity: .95 });
-    gsap.to(b, { y: y - rise, scale: s, duration: dur, ease: "sine.out" });
-    gsap.to(b, { x: x + (Math.random() - .5) * 26, duration: dur / 3, ease: "sine.inOut", yoyo: true, repeat: 2 });
-    gsap.to(b, { opacity: 0, duration: .25, delay: dur - .25, ease: "power1.in" });
-  }
-  // a burst of foam from a press: bubbles spray out and float up (Physics2D, negative gravity = buoyancy)
+  // a press sends out two golden ripples (a drop landing in a full glass)
   function burst(x, y) {
-    const hasP = !!window.Physics2DPlugin;
-    for (let i = 0; i < 12; i++) {
-      const b = next(), s = .5 + Math.random() * 1.1;
-      gsap.killTweensOf(b);
-      gsap.set(b, { x, y, scale: s, opacity: 1 });
-      if (hasP) gsap.to(b, { physics2D: { velocity: 110 + Math.random() * 200, angle: -180 + Math.random() * 180, gravity: -260 }, duration: .8 + Math.random() * .5, ease: "none" });
-      else gsap.to(b, { x: x + (Math.random() - .5) * 160, y: y - 60 - Math.random() * 120, duration: 1, ease: "power2.out" });
-      gsap.to(b, { opacity: 0, scale: s * 1.3, duration: .3, delay: .6 + Math.random() * .4 });
-    }
+    [0, .12].forEach((d, i) => {
+      const r = document.createElement("i"); r.className = "fx-rip"; layer.appendChild(r);
+      gsap.fromTo(r, { x, y, scale: .2, opacity: .9 }, { scale: i ? 2.6 : 1.8, opacity: 0, duration: .7, delay: d, ease: "power2.out", onComplete: () => r.remove() });
+    });
   }
 
   function start() {
@@ -57,15 +39,21 @@
       const ring = document.createElement("i"); ring.className = "fx-ring"; ring.innerHTML = "<span></span>"; layer.appendChild(ring);
       const tag = ring.querySelector("span");
       const rx = gsap.quickTo(ring, "x", { duration: .35, ease: "power3.out" }), ry = gsap.quickTo(ring, "y", { duration: .35, ease: "power3.out" });
-      let lx = 0, ly = 0, lt = 0, shown = false, hot = null;
+      let lx = 0, ly = 0, lt = 0, shown = false, hot = null, hopOn = false;
+      const hop = document.createElement("i"); hop.className = "fx-hop"; layer.appendChild(hop);
+      const hx = gsap.quickTo(hop, "x", { duration: .7, ease: "power3.out" }), hy = gsap.quickTo(hop, "y", { duration: .7, ease: "power3.out" });
       addEventListener("pointermove", e => {
         if (e.pointerType !== "mouse") return;
         if (!shown) { shown = true; gsap.set(ring, { x: e.clientX, y: e.clientY }); gsap.to(ring, { opacity: 1, duration: .3 }); }
         rx(e.clientX); ry(e.clientY);
-        const now = performance.now(), d = Math.hypot(e.clientX - lx, e.clientY - ly);
-        if (d > 22 && now - lt > 45) { fizz(e.clientX, e.clientY + 6, false); lx = e.clientX; ly = e.clientY; lt = now; }
+        if (!hopOn) { hopOn = true; gsap.set(hop, { x: e.clientX, y: e.clientY }); gsap.to(hop, { opacity: 1, duration: .4 }); }
+        hx(e.clientX + 18); hy(e.clientY + 20);
+        // lean + stretch with the pointer's speed, settle when it stops
+        const vx = e.clientX - lx, vy = e.clientY - ly; lx = e.clientX; ly = e.clientY;
+        gsap.to(hop, { rotation: gsap.utils.clamp(-40, 40, vx * 2.2), scaleY: 1 + gsap.utils.clamp(0, .25, Math.hypot(vx, vy) / 120), duration: .35, overwrite: "auto" });
+        clearTimeout(lt); lt = setTimeout(() => gsap.to(hop, { rotation: 0, scaleY: 1, duration: 1, ease: "elastic.out(1, .3)" }), 90);
       }, { passive: true });
-      document.addEventListener("pointerleave", () => { shown = false; gsap.to(ring, { opacity: 0, duration: .2 }); });
+      document.addEventListener("pointerleave", () => { shown = false; hopOn = false; gsap.to([ring, hop], { opacity: 0, duration: .2 }); });
       // swell over clickable things; bottles / taps get a little "Open" tag
       document.addEventListener("pointerover", e => {
         const el = e.target.closest && e.target.closest(CLICKABLE);
