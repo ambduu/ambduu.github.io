@@ -872,3 +872,27 @@ body.diving .sign { opacity: 0; transition: opacity .3s; pointer-events: none; }
   .sign--tin { top: 64px !important; bottom: auto !important; } .sign--tin .board { transform-origin: 100% 0; }
   .sign--chalk { display: none; }
 }
+
+/* =========================================================
+   Long-read service pages (shopify-developer-portugal, hire, CRO, speed)
+   + related links on every detail page
+   ========================================================= */
+.copy { display: grid; gap: 28px; padding-bottom: 40px; }
+.copy > section { border: 1px solid var(--line); border-radius: calc(var(--r-card) + 8px); background: var(--surface); padding: clamp(24px, 4vw, 56px); }
+.copy > section:nth-child(even) { background: var(--bg-2); }
+.copy .kick { color: var(--accent); }
+.copy h2 { font-size: clamp(26px, 2.4vw, 34px); font-weight: 600; letter-spacing: -.02em; line-height: 1.05; margin: 12px 0 16px; }
+.copy h3 { font-size: 19px; font-weight: 600; letter-spacing: -.01em; margin: 26px 0 6px; }
+.copy p, .copy li { max-width: 70ch; }
+.copy p { margin: 0 0 14px; }
+.copy ul, .copy ol { margin: 0 0 14px; padding-left: 1.2em; }
+.copy li { margin-bottom: 8px; }
+.copy li::marker { color: var(--accent); }
+.copy a:not(.btn):not(.chip) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.copy .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.copy .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+.copy .faq h3 { padding-top: 18px; border-top: 1px solid var(--line); }
+.copy .faq h3:first-of-type { border-top: 0; padding-top: 0; }
+.related { padding-block: 24px 8px; }
+.related ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 14px 0 0; padding: 0; }
+.related a.chip:hover { color: var(--fg); border-color: var(--fg); }

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopify Speed Optimization &amp; Core Web Vitals · codebrew</title>
+<meta name="description" content="Make your Shopify store faster: Core Web Vitals (LCP, INP, CLS), theme performance, app bloat clean-up and image work by a senior Shopify Plus developer.">
+<link rel="canonical" href="https://codebrew.pt/shopify-speed-optimization.html">
+<meta property="og:type" content="website"><meta property="og:url" content="https://codebrew.pt/shopify-speed-optimization.html">
+<meta property="og:title" content="Shopify Speed Optimization &amp; Core Web Vitals · codebrew"><meta property="og:description" content="Make your Shopify store faster: Core Web Vitals (LCP, INP, CLS), theme performance, app bloat clean-up and image work by a senior Shopify Plus developer.">
+<meta property="og:image" content="https://codebrew.pt/assets/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#110d09">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "@id": "https://codebrew.pt/shopify-speed-optimization.html#service", "name": "Shopify speed optimization", "serviceType": "Shopify performance and Core Web Vitals optimization", "url": "https://codebrew.pt/shopify-speed-optimization.html", "description": "Make your Shopify store faster: Core Web Vitals (LCP, INP, CLS), theme performance, app bloat clean-up and image work by a senior Shopify Plus developer.", "provider": {"@id": "https://codebrew.pt/#codebrew"}, "areaServed": ["PT", "EU", "GB", "US", "Worldwide"], "availableChannel": {"@type": "ServiceChannel", "serviceUrl": "https://codebrew.pt/#tram"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "@id": "https://codebrew.pt/shopify-speed-optimization.html#faq", "mainEntity": [{"@type": "Question", "name": "Can you get my store a perfect PageSpeed score?", "acceptedAnswer": {"@type": "Answer", "text": "I won't promise a specific score. Lab scores swing between runs and depend on apps and tracking you may need. The goal is good Core Web Vitals for real visitors and a store that feels fast."}}, {"@type": "Question", "name": "Does uninstalling an app make my store faster?", "acceptedAnswer": {"@type": "Answer", "text": "Not always. Some apps leave code in the theme after they are removed. Part of the audit is finding and cleaning up that leftover code."}}, {"@type": "Question", "name": "Do I need a new theme to make my store fast?", "acceptedAnswer": {"@type": "Answer", "text": "Usually not. Most stores can be made much faster by fixing images, scripts and app code in the existing theme. A rebuild only makes sense when the theme itself is the bottleneck."}}, {"@type": "Question", "name": "Does site speed affect SEO?", "acceptedAnswer": {"@type": "Answer", "text": "Core Web Vitals are one of the signals Google uses in its page experience evaluation. Relevant content matters more, but a fast store helps rankings, crawling and conversion."}}, {"@type": "Question", "name": "Do you work on Shopify Plus stores?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, on Shopify and Shopify Plus, including stores with custom checkout extensions, B2B and several markets."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300..800&family=Rye&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("brew-theme")||"dark"}catch(e){}try{var _p=sessionStorage.getItem("brew-pour")||sessionStorage.getItem("brew-return");if(_p){var _c=(JSON.parse(_p).color)||"#e9a22a";document.documentElement.classList.add("pouring");document.documentElement.style.setProperty("--pour-c",_c)}}catch(e){}</script>
+</head>
+<body id="top">
+<main id="main">
+  <header class="page-head shell">
+    <div class="ph-text">
+      <span class="eyebrow mono rv">Core Web Vitals · theme performance · app bloat · images</span>
+      <h1 data-split>Shopify speed optimization</h1>
+      <p class="rv" style="--d:.2s">Slow stores lose shoppers and search visibility. I find what is actually slowing your Shopify store down, from leftover app code to oversized images and heavy theme scripts, and fix it in the theme without taking away the features your team relies on.</p>
+      <div class="tally rv" style="--d:.3s"><div><b>200+</b><span>stores worked on</span></div><div><b>Since 2015</b><span>on Shopify</span></div><div><b>CWV</b><span>LCP · INP · CLS</span></div></div>
+    </div>
+    <div class="vessel-head rv" style="--d:.15s" data-glass='{"t":"bottle"}' aria-hidden="true"><div class="glass" style="--ar:300/600"><canvas class="gl"></canvas></div></div>
+  </header>
+  <div class="shell copy">
+    <section>
+      <span class="kick mono">Why it matters</span>
+      <h2>Speed is part of the shopping experience</h2>
+      <p>Shoppers on mobile data don&#x27;t wait for a page that is still loading scripts. Google also measures real-user loading, responsiveness and visual stability as Core Web Vitals and uses them as part of how it evaluates pages. A faster store helps both: more visitors see your products, and more of them stay long enough to buy. If conversion is the real goal, see <a href="shopify-cro.html">Shopify CRO</a> too.</p>
+    </section>
+    <section>
+      <span class="kick mono">The metrics</span>
+      <h2>Core Web Vitals, in plain language</h2>
+      <ul>
+        <li><strong>LCP (Largest Contentful Paint)</strong>: how long the main content, usually the hero or product image, takes to appear. Google&#x27;s &ldquo;good&rdquo; threshold is 2.5 seconds or less.</li>
+        <li><strong>INP (Interaction to Next Paint)</strong>: how quickly the page responds when someone taps a variant, opens the menu or adds to cart. Good is 200 milliseconds or less.</li>
+        <li><strong>CLS (Cumulative Layout Shift)</strong>: how much the page jumps around while loading. Good is 0.1 or less.</li>
+      </ul>
+      <p>Lab scores from Lighthouse and PageSpeed Insights are useful for diagnosis, but the numbers that count are field data from real visitors, which Shopify also shows in its web performance report in the admin.</p>
+    </section>
+    <section>
+      <span class="kick mono">Where stores get slow</span>
+      <h2>The usual suspects</h2>
+      <ul>
+        <li><strong>App bloat.</strong> Apps that load scripts on every page, and code left in the theme after an app was uninstalled.</li>
+        <li><strong>Heavy media.</strong> Oversized hero images, autoplay videos and sliders above the fold.</li>
+        <li><strong>Third-party tags.</strong> Several analytics, ads and chat scripts all competing for the main thread.</li>
+        <li><strong>Theme code.</strong> Render-blocking CSS and JavaScript, large Liquid loops, and media without reserved space, which causes layout shift.</li>
+      </ul>
+    </section>
+    <section>
+      <span class="kick mono">The work</span>
+      <h2>What Shopify speed optimization involves</h2>
+      <h3>1. Measure</h3>
+      <p>Field data first, then PageSpeed Insights, Lighthouse and Shopify Theme Inspector to see which templates, sections, apps and scripts cost the most.</p>
+      <h3>2. Remove and replace</h3>
+      <p>Leftover app code is removed, apps that duplicate each other are consolidated, and small features handled by heavy apps are rebuilt as lean theme code or theme app extensions.</p>
+      <h3>3. Fix the theme</h3>
+      <p>Responsive images with the right sizes, lazy loading below the fold, priority loading for the main image, deferred scripts, sensible font loading and fixed dimensions for media so nothing jumps.</p>
+      <h3>4. Keep it fast</h3>
+      <p>Changes ship through Git and Shopify CLI so they can be reviewed and rolled back, with a short list of rules for adding new apps and sections without undoing the work. Read more about releases on the <a href="launch.html">speed and launch page</a>.</p>
+    </section>
+    <section>
+      <span class="kick mono">Common questions</span>
+      <h2>Shopify speed optimization, answered</h2>
+      <div class="faq">
+        <h3>Can you get my store a perfect PageSpeed score?</h3>
+        <p>I won&#x27;t promise a specific score. Lab scores swing between runs and depend on apps and tracking you may need. The goal is good Core Web Vitals for real visitors and a store that feels fast.</p>
+        <h3>Does uninstalling an app make my store faster?</h3>
+        <p>Not always. Some apps leave code in the theme after they are removed. Part of the audit is finding and cleaning up that leftover code.</p>
+        <h3>Do I need a new theme to make my store fast?</h3>
+        <p>Usually not. Most stores can be made much faster by fixing images, scripts and app code in the existing theme. A rebuild only makes sense when the theme itself is the bottleneck.</p>
+        <h3>Does site speed affect SEO?</h3>
+        <p>Core Web Vitals are one of the signals Google uses in its page experience evaluation. Relevant content matters more, but a fast store helps rankings, crawling and conversion.</p>
+        <h3>Do you work on Shopify Plus stores?</h3>
+        <p>Yes, on Shopify and Shopify Plus, including stores with custom checkout extensions, B2B and several markets.</p>
+      </div>
+    </section>
+    <section>
+      <span class="kick mono">Order up</span>
+      <h2>Is your store slower than it should be?</h2>
+      <p>Send me your store URL and the pages that matter most. I&#x27;ll tell you what is likely slowing it down and what fixing it would involve.</p>
+      <div class="cta-row"><a class="btn" href="https://codebrew.pt/#tram">Get in touch <span class="badge"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="btn ghost" href="mailto:ambduu@gmail.com">ambduu@gmail.com</a></div>
+    </section>
+  </div>
+  <nav class="shell related" aria-label="More Shopify services">
+    <span class="mono muted">More from the brewhouse</span>
+    <ul><li><a class="chip" href="shopify-developer-portugal.html">Shopify developer in Portugal</a></li><li><a class="chip" href="hire-shopify-developer.html">Hire a Shopify developer</a></li><li><a class="chip" href="shopify-cro.html">Shopify CRO</a></li><li><a class="chip" href="themes.html">Custom themes</a></li><li><a class="chip" href="shopify-plus.html">Shopify Plus</a></li><li><a class="chip" href="apps.html">Apps & back end</a></li><li><a class="chip" href="launch.html">Speed & launch</a></li><li><a class="chip" href="stores.html">All stores (portfolio)</a></li></ul>
+  </nav>
+  <div class="shell">
+    <a class="next-cup" href="shopify-developer-portugal.html" data-pour>
+      <span class="mono muted">Next · who you&#x27;d be working with</span>
+      <b>Shopify developer in Portugal &rarr;</b>
+    </a>
+  </div>
+</main>
+<a class="back" href="index.html" data-back>&larr; Back to the brewhouse (home)</a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" defer></script>
+<script src="assets/main.js" defer></script>
+<script src="assets/vendor/gsap.min.js" defer></script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/vendor/Flip.min.js" defer></script>
+<script src="assets/vendor/Draggable.min.js" defer></script>
+<script src="assets/vendor/Physics2DPlugin.min.js" defer></script>
+<script src="assets/vendor/CustomEase.min.js" defer></script>
+<script src="assets/vendor/CustomWiggle.min.js" defer></script>
+<script src="assets/vendor/SplitText.min.js" defer></script>
+<script src="assets/fun.js" defer></script>
+</body>
+</html>
