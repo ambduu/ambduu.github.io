@@ -519,11 +519,29 @@
         const no = $("#tr-no").textContent, type = form.type.value || "a round", name = form.name.value.trim();
         const subject = `Order Nº ${no} on the 28: ${type} (${name})`;
         const body = `${form.msg.value.trim()}\n\nThirsty for: ${type}\n\n${name}\n${form.email.value.trim()}`;
-        pour(1.08, .6);
-        form.classList.remove("sent"); void form.offsetWidth; form.classList.add("sent");
-        done.innerHTML = `Your mail app should open with the order ready. Nothing popped up? Write to <a href="mailto:ambduu@gmail.com">ambduu@gmail.com</a>.`;
-        if (!K.reduced) { gsap.fromTo(form, { rotation: -.8 }, { rotation: 1.2, duration: .5, ease: "elastic.out(1,.3)" }); }
-        setTimeout(() => { location.href = `mailto:ambduu@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; }, 900);
+        const btn = form.querySelector('button[type="submit"]'), label = btn.innerHTML;
+        const mailto = `mailto:ambduu@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        btn.disabled = true; btn.innerHTML = "Pouring… <i>→</i>";
+        // FormSubmit emails the order straight to Germanjit; the visitor never leaves the page
+        fetch("https://formsubmit.co/ajax/ambduu@gmail.com", {
+          method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ name, email: form.email.value.trim(), "Thirsty for": type, message: form.msg.value.trim(),
+            _subject: subject, _replyto: form.email.value.trim(), _template: "table", _captcha: "false" })
+        }).then(r => r.json().then(j => ({ ok: r.ok && String(j.success) === "true", j }))).then(({ ok, j }) => {
+          if (!ok) throw new Error(j && j.message || "send failed");
+          pour(1.08, .6);
+          form.classList.remove("sent"); void form.offsetWidth; form.classList.add("sent");
+          done.innerHTML = `Cheers, ${name.split(" ")[0]}! Your order is on its way to Germanjit. He answers within one working day.`;
+          if (!K.reduced) gsap.fromTo(form, { rotation: -.8 }, { rotation: 1.2, duration: .5, ease: "elastic.out(1,.3)" });
+          form.reset(); btn.innerHTML = "Sent ✓";
+          setTimeout(() => { btn.disabled = false; btn.innerHTML = label; }, 6000);
+        }).catch(() => {
+          // the service is unreachable: fall back to the visitor's own mail app with everything pre-filled
+          btn.disabled = false; btn.innerHTML = label;
+          form.classList.remove("sent"); void form.offsetWidth; form.classList.add("sent");
+          done.innerHTML = `The tap jammed. Your mail app should open with the order ready; nothing popped up? Write to <a href="mailto:ambduu@gmail.com">ambduu@gmail.com</a>.`;
+          setTimeout(() => { location.href = mailto; }, 900);
+        });
       });
     }
   });
