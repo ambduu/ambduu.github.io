@@ -194,3 +194,9 @@ a:focus-visible, button:focus-visible, textarea:focus-visible, select:focus-visi
 /* phones: logo + both pills + the pint must fit on one row */
 @media (max-width: 480px) { .jh { padding-left: 14px !important; padding-right: 14px !important; gap: 8px !important; } .jh-logo .lg { height: 36px; } .jh-cta { gap: 5px !important; } }
 @media (max-width: 380px) { .jh-logo .lg { height: 32px; } }
+
+/* PERF (phones/tablets): the paper cut-outs' filter shadows and blurs are re-rasterised on every scroll frame, which is what made
+   iPhones stutter. Touch devices and narrow screens get the flat paper look instead; the scroll story itself is unchanged. */
+@media (hover: none), (max-width: 1024px) {
+  .jstage *, .ml-courier *, .sg2 * { filter: none !important; }
+}

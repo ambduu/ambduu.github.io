@@ -37,7 +37,8 @@
   // quantised + rAF-batched so the heavy drop-shadow filters repaint only when the light really moves
   const root = document.documentElement, light = { x: 1, y: 1 }, shown = { x: 1, y: 1 }; var lightTo;
   const q = v => Math.round(v * 25) / 25;
-  const paint = () => { const x = q(light.x), y = q(light.y);
+  // PERF: never move the shadows while the page is scrolling (each move re-rasterises every shadowed cut-out); catch up once it settles
+  const paint = () => { if (scT) { clearTimeout(paint.t); paint.t = setTimeout(paint, 220); return; } const x = q(light.x), y = q(light.y);
     if (x === shown.x && y === shown.y) return; shown.x = K.lx = x; shown.y = K.ly = y;
     scenes.forEach(sc => sc._vis && lightTo(sc._stage)); };
   // PERF: write --lx/--ly only on on-screen stages (not :root) so a light change restyles ~1 scene, not the whole document
@@ -52,7 +53,7 @@
     if (!mq && root.dataset.theme === "dark") mq = requestAnimationFrame(() => { mq = 0; lantern(); });
   }, { passive: true });
   document.addEventListener("brew:theme", lantern);
-  addEventListener("deviceorientation", e => { if (e.gamma == null) return; lx(1 - e.gamma / 45); ly(1 + (e.beta - 45) / 60); }, { passive: true });
+  // (no device-tilt light: on phones the shadows are off for speed, and tilt fired repaints non-stop)
   // loader
   const loader = document.getElementById("loader"), beer = document.getElementById("loaderBeer"), pct = document.getElementById("loaderPct");
   const o = { v: 0 };
